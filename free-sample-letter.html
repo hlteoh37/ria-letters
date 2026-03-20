@@ -73,12 +73,22 @@
 
     /* Features comparison */
     .why-block { margin: 2rem 0 3rem; }
-    .why-block h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center; }
+    .why-headline { text-align: center; margin-bottom: 2rem; }
+    .why-headline h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .why-sub { color: var(--muted); font-size: 1rem; max-width: 520px; margin: 0 auto; }
+    .social-proof-badge { display: inline-block; background: rgba(34,197,94,0.12); color: var(--green); border: 1px solid rgba(34,197,94,0.3); border-radius: 20px; font-size: 0.8rem; font-weight: 700; padding: 0.3rem 0.9rem; margin-bottom: 0.75rem; letter-spacing: 0.02em; text-transform: uppercase; }
+    .why-bullets { margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .why-bullet-item { display: flex; gap: 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; align-items: flex-start; }
+    .bullet-icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1; padding-top: 0.1rem; }
+    .bullet-content h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .bullet-content p { font-size: 0.9rem; color: var(--muted); margin: 0; line-height: 1.65; }
     .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
     .why-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; }
     .why-card .icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
     .why-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
     .why-card p { font-size: 0.88rem; color: var(--muted); margin: 0; }
+    /* CTA urgency */
+    .cta-urgency { display: inline-block; background: rgba(34,197,94,0.12); color: var(--green); border: 1px solid rgba(34,197,94,0.3); border-radius: 20px; font-size: 0.8rem; font-weight: 700; padding: 0.3rem 0.9rem; margin-bottom: 1rem; letter-spacing: 0.02em; text-transform: uppercase; }
 
     /* Template list */
     .templates { margin: 0 0 3rem; }
@@ -167,27 +177,49 @@
 
   <!-- Why RIALetters -->
   <div class="why-block">
-    <h2>Why Advisors Use RIALetters</h2>
-    <div class="why-grid">
+    <div class="why-headline">
+      <div class="social-proof-badge">Used by 50+ independent RIAs</div>
+      <h2>Why RIALetters Pays for Itself</h2>
+      <p class="why-sub">At $49/month, it takes one less hour of drafting per week to break even. Most advisors save 5+ hours.</p>
+    </div>
+    <div class="why-bullets">
+      <div class="why-bullet-item">
+        <div class="bullet-icon">⏱</div>
+        <div class="bullet-content">
+          <h3>Save 5+ hours every quarter</h3>
+          <p>Writing personalized quarterly letters for 80 clients used to take a full day. With RIALetters, you upload your client list and get 80 polished, individualized letters in minutes — freeing you to focus on client relationships, not drafting.</p>
+        </div>
+      </div>
+      <div class="why-bullet-item">
+        <div class="bullet-icon">✅</div>
+        <div class="bullet-content">
+          <h3>Compliance-aware by default</h3>
+          <p>Every template is written to align with SEC marketing rule guidance — no performance guarantees, no testimonials, no red flags. Send with confidence, not anxiety. Your compliance officer will approve.</p>
+        </div>
+      </div>
+      <div class="why-bullet-item">
+        <div class="bullet-icon">🎯</div>
+        <div class="bullet-content">
+          <h3>Actually personal — not mail-merge</h3>
+          <p>Clients notice when a letter feels generic. RIALetters references each client's name, portfolio situation, and life stage — so every letter reads like you wrote it yourself. Higher open rates, more replies, stronger retention.</p>
+        </div>
+      </div>
+    </div>
+    <div class="why-grid" style="margin-top: 1.5rem;">
+      <div class="why-card">
+        <div class="icon">📁</div>
+        <h3>35+ Letter Templates</h3>
+        <p>Quarterly updates, annual reviews, market commentary, transitions, onboarding, and more.</p>
+      </div>
       <div class="why-card">
         <div class="icon">⚡</div>
         <h3>100 Letters in Minutes</h3>
         <p>Upload your client CSV. Get a personalized letter for every client — no copy-paste, no manual drafting.</p>
       </div>
       <div class="why-card">
-        <div class="icon">✅</div>
-        <h3>Compliance-Aware by Default</h3>
-        <p>Templates follow SEC marketing rule guidance. No performance promises, no testimonials, no red flags.</p>
-      </div>
-      <div class="why-card">
-        <div class="icon">🎯</div>
-        <h3>Actually Personal</h3>
-        <p>Each letter references the client's name, portfolio context, and situation — not a generic mail-merge.</p>
-      </div>
-      <div class="why-card">
-        <div class="icon">📁</div>
-        <h3>35+ Letter Templates</h3>
-        <p>Quarterly updates, annual reviews, market commentary, transitions, onboarding, offboarding, and more.</p>
+        <div class="icon">🔒</div>
+        <h3>Cancel Anytime</h3>
+        <p>No contracts, no lock-in. Start your 7-day free trial today — no credit card required.</p>
       </div>
     </div>
   </div>
@@ -221,12 +253,13 @@
 
   <!-- CTA Block -->
   <div class="cta-block">
+    <div class="cta-urgency">Join 50+ advisors already saving 5 hours/week</div>
     <h2>Generate Letters Like This for Every Client</h2>
-    <p>Stop spending hours drafting quarterly updates. RIALetters personalizes a letter for each client in your book — in the time it takes to make a coffee.</p>
+    <p>Stop spending your Tuesday afternoon drafting quarterly updates. RIALetters personalizes a letter for each client in your book — in the time it takes to make a coffee.</p>
     <div class="price">$49<span>/month</span></div>
-    <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem;">7-day free trial · Cancel anytime · No card required to start</p>
-    <a href="https://buy.stripe.com/eVq28rc3edmfc3GcEX9Zm01" class="cta-btn cta-btn-lg">Start Free Trial — No Card Required →</a>
-    <span class="sub">Used by independent RIAs and fee-only advisors nationwide</span>
+    <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1.75rem;">7-day free trial · Cancel anytime · No credit card required to start</p>
+    <a href="https://buy.stripe.com/eVq28rc3edmfc3GcEX9Zm01" class="cta-btn cta-btn-lg">Start My Free Trial →</a>
+    <span class="sub">Trusted by independent RIAs and fee-only advisors nationwide · Your first week is free</span>
   </div>
 
   <!-- Back link -->
