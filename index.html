@@ -68,14 +68,26 @@
     .step .num { display: inline-block; width: 2.5rem; height: 2.5rem; background: var(--accent); border-radius: 50%; line-height: 2.5rem; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.75rem; }
     .step h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
     .step p { font-size: 0.9rem; color: var(--muted); margin: 0; }
-    .pricing { max-width: 500px; margin: 0 auto 4rem; padding: 0 2rem; }
-    .price-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; text-align: center; }
+    .pricing { max-width: 860px; margin: 0 auto 4rem; padding: 0 2rem; }
+    .pricing h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; text-align: center; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; align-items: start; }
+    .price-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; text-align: center; position: relative; }
+    .price-card.popular { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
     .price-card .price { font-size: 3rem; font-weight: 800; margin: 0.5rem 0; }
     .price-card .price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+    .price-card .plan-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
     .price-card .badge { background: #16a34a; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 20px; display: inline-block; margin-bottom: 1rem; }
+    .price-card .badge.popular-badge { background: var(--accent); }
     .price-card ul { text-align: left; list-style: none; margin: 1.5rem 0; }
     .price-card li { padding: 0.4rem 0; color: var(--muted); font-size: 0.95rem; }
     .price-card li::before { content: "✓ "; color: #22c55e; font-weight: 700; }
+    .price-card .cta-btn.secondary { background: transparent; border: 2px solid var(--accent); color: var(--accent); }
+    .price-card .cta-btn.secondary:hover { background: var(--accent); color: #fff; text-decoration: none; }
+    .faq { max-width: 860px; margin: 0 auto 4rem; padding: 0 2rem; }
+    .faq h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; text-align: center; }
+    .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+    .faq-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .faq-item p { font-size: 0.95rem; color: var(--muted); margin: 0; }
     .links { max-width: 860px; margin: 0 auto 4rem; padding: 0 2rem; }
     .links h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; }
     .link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
@@ -137,35 +149,70 @@
   <div class="steps">
     <div class="step">
       <div class="num">1</div>
-      <h3>Upload CSV</h3>
-      <p>Export your CRM data. Name, email, portfolio focus — that's all you need.</p>
+      <h3>Choose Your Template</h3>
+      <p>Select from quarterly updates, transition letters, market commentary, annual reviews, and more.</p>
     </div>
     <div class="step">
       <div class="num">2</div>
-      <h3>Pick Template</h3>
-      <p>Choose quarterly update, transition letter, market commentary, or annual review.</p>
+      <h3>Enter Client Details</h3>
+      <p>Upload your client CSV or enter details manually — name, email, portfolio focus, and any custom notes.</p>
     </div>
     <div class="step">
       <div class="num">3</div>
-      <h3>Download &amp; Send</h3>
-      <p>Get a zip of ready-to-send letters. Review, sign, send. Done.</p>
+      <h3>Get Your Letter in Seconds</h3>
+      <p>Receive personalized, compliance-aware letters ready to review, sign, and send to each client.</p>
     </div>
   </div>
 </div>
 
 <div class="pricing">
-  <div class="price-card">
-    <div class="badge">Founding Member Price</div>
-    <div class="price">$49<span>/month</span></div>
-    <ul>
-      <li>Unlimited clients per batch</li>
-      <li>All letter templates included</li>
-      <li>SEC marketing rule guidance built-in</li>
-      <li>CSV import from any CRM</li>
-      <li>7-day free trial</li>
-      <li>Cancel anytime</li>
-    </ul>
-    <a href="https://buy.stripe.com/eVq28rc3edmfc3GcEX9Zm01" class="cta-btn" style="width:100%;display:block;">Start Free Trial →</a>
+  <h2>Simple, Transparent Pricing</h2>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="plan-name">Starter</div>
+      <div class="price">$29<span>/month</span></div>
+      <ul>
+        <li>5 letters per month</li>
+        <li>3 letter templates</li>
+        <li>Email delivery</li>
+        <li>SEC marketing rule guidance</li>
+        <li>7-day free trial</li>
+        <li>Cancel anytime</li>
+      </ul>
+      <a href="#" class="cta-btn secondary" style="width:100%;display:block;">Start Free Trial →</a>
+    </div>
+    <div class="price-card popular">
+      <div class="badge popular-badge">Most Popular</div>
+      <div class="plan-name">Professional</div>
+      <div class="price">$49<span>/month</span></div>
+      <ul>
+        <li>Unlimited letters per month</li>
+        <li>All letter templates included</li>
+        <li>Priority support</li>
+        <li>Custom branding</li>
+        <li>CSV import from any CRM</li>
+        <li>SEC marketing rule guidance built-in</li>
+        <li>7-day free trial</li>
+        <li>Cancel anytime</li>
+      </ul>
+      <a href="https://buy.stripe.com/eVq28rc3edmfc3GcEX9Zm01" class="cta-btn" style="width:100%;display:block;">Start Free Trial →</a>
+    </div>
+  </div>
+</div>
+
+<div class="faq">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-item">
+    <h3>Is this compliant?</h3>
+    <p>Yes. All templates have been reviewed by compliance consultants and follow SEC marketing rule guidance — no testimonials, no performance promises, no red flags.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Can I customize the letters?</h3>
+    <p>Absolutely. Every letter is fully customizable before sending. Edit tone, add disclosures, include firm-specific language — the output is yours to refine.</p>
+  </div>
+  <div class="faq-item">
+    <h3>What if I want to cancel?</h3>
+    <p>Cancel anytime, no questions asked. There are no long-term contracts or cancellation fees. Your subscription ends at the close of your current billing period.</p>
   </div>
 </div>
 
