@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RIALetters — AI Client Letters for Financial Advisors</title>
+  <meta name="description" content="Generate personalized, compliance-ready client letters for your entire book of business from a CSV. Built for independent RIAs and financial advisors." />
+  <meta name="keywords" content="financial advisor client letters, RIA client communication, AI generated advisor letters, batch client letters financial advisor, SEC marketing rule letters" />
+  <link rel="canonical" href="https://rialetters.surge.sh/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rialetters.surge.sh/" />
+  <meta property="og:title" content="RIALetters — AI Client Letters for Financial Advisors" />
+  <meta property="og:description" content="Generate personalized, compliance-ready client letters for your entire book of business from a CSV. $49/mo." />
+  <meta property="og:site_name" content="RIALetters" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "RIALetters",
+    "description": "AI-powered batch client letter generator for independent RIAs and financial advisors.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "49.00",
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "49.00",
+        "priceCurrency": "USD",
+        "unitText": "month"
+      }
+    }
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0d1117; --surface: #161b22; --border: #30363d; --text: #e6edf3; --muted: #8b949e; --accent: #2563eb; --accent-hover: #1d4ed8; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.7; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; gap: 2rem; align-items: center; }
+    .nav strong { color: var(--text); font-size: 1.1rem; }
+    .nav a { color: var(--muted); font-size: 0.9rem; }
+    .hero { max-width: 860px; margin: 0 auto; padding: 5rem 2rem 3rem; text-align: center; }
+    .hero h1 { font-size: 2.6rem; font-weight: 800; line-height: 1.2; margin-bottom: 1.25rem; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { font-size: 1.15rem; color: var(--muted); max-width: 580px; margin: 0 auto 2rem; }
+    .cta-btn { display: inline-block; padding: 0.9rem 2.25rem; background: var(--accent); color: #fff; border-radius: 8px; font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: background 0.15s; }
+    .cta-btn:hover { background: var(--accent-hover); text-decoration: none; }
+    .sub { display: block; margin-top: 0.75rem; font-size: 0.85rem; color: var(--muted); }
+    .features { max-width: 860px; margin: 4rem auto; padding: 0 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .feature { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+    .feature h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .feature p { font-size: 0.9rem; color: var(--muted); margin: 0; }
+    .how { max-width: 860px; margin: 0 auto 4rem; padding: 0 2rem; }
+    .how h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; text-align: center; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .step { text-align: center; }
+    .step .num { display: inline-block; width: 2.5rem; height: 2.5rem; background: var(--accent); border-radius: 50%; line-height: 2.5rem; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.75rem; }
+    .step h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .step p { font-size: 0.9rem; color: var(--muted); margin: 0; }
+    .pricing { max-width: 500px; margin: 0 auto 4rem; padding: 0 2rem; }
+    .price-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; text-align: center; }
+    .price-card .price { font-size: 3rem; font-weight: 800; margin: 0.5rem 0; }
+    .price-card .price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+    .price-card .badge { background: #16a34a; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 20px; display: inline-block; margin-bottom: 1rem; }
+    .price-card ul { text-align: left; list-style: none; margin: 1.5rem 0; }
+    .price-card li { padding: 0.4rem 0; color: var(--muted); font-size: 0.95rem; }
+    .price-card li::before { content: "✓ "; color: #22c55e; font-weight: 700; }
+    .links { max-width: 860px; margin: 0 auto 4rem; padding: 0 2rem; }
+    .links h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; }
+    .link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
+    .link-grid a { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.9rem; color: var(--text); display: block; }
+    .link-grid a:hover { border-color: var(--accent); text-decoration: none; }
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; color: var(--muted); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <strong>RIALetters</strong>
+  <a href="/advisor-transition-letter-financial-advisor.html">Transition Letters</a>
+  <a href="/quarterly-portfolio-update-letter-financial-advisor.html">Quarterly Updates</a>
+  <a href="/ai-generated-client-letters-financial-advisor.html">AI Letters</a>
+</nav>
+
+<div class="hero">
+  <h1>Client Letters for <span>Every Advisor.</span> Every Client.</h1>
+  <p>Upload your client CSV. Get personalized, compliance-aware letters for your entire book — quarterly updates, transitions, market commentary — ready in minutes.</p>
+  <a href="https://buy.stripe.com/eVq28rc3edmfc3GcEX9Zm01" class="cta-btn">Start 7-Day Free Trial →</a>
+  <span class="sub">$49/mo after trial · Cancel anytime · No credit card required to start</span>
+</div>
+
+<div class="features">
+  <div class="feature">
+    <h3>Batch from CSV</h3>
+    <p>Upload one spreadsheet. Get 20–500 personalized letters back. No copy-paste, no mail merge hacks.</p>
+  </div>
+  <div class="feature">
+    <h3>Compliance-Aware</h3>
+    <p>Templates follow SEC marketing rule guidance. No testimonials, no performance promises, no red flags.</p>
+  </div>
+  <div class="feature">
+    <h3>Actually Personal</h3>
+    <p>Each letter references the client's name, portfolio focus, and situation — not a mail-merge template.</p>
+  </div>
+  <div class="feature">
+    <h3>Any Letter Type</h3>
+    <p>Quarterly updates, annual reviews, transition letters, market commentary, client onboarding.</p>
+  </div>
+</div>
+
+<div class="how">
+  <h2>How It Works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="num">1</div>
+      <h3>Upload CSV</h3>
+      <p>Export your CRM data. Name, email, portfolio focus — that's all you need.</p>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <h3>Pick Template</h3>
+      <p>Choose quarterly update, transition letter, market commentary, or annual review.</p>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <h3>Download &amp; Send</h3>
+      <p>Get a zip of ready-to-send letters. Review, sign, send. Done.</p>
+    </div>
+  </div>
+</div>
+
+<div class="pricing">
+  <div class="price-card">
+    <div class="badge">Founding Member Price</div>
+    <div class="price">$49<span>/month</span></div>
+    <ul>
+      <li>Unlimited clients per batch</li>
+      <li>All letter templates included</li>
+      <li>SEC marketing rule guidance built-in</li>
+      <li>CSV import from any CRM</li>
+      <li>7-day free trial</li>
+      <li>Cancel anytime</li>
+    </ul>
+    <a href="https://buy.stripe.com/eVq28rc3edmfc3GcEX9Zm01" class="cta-btn" style="width:100%;display:block;">Start Free Trial →</a>
+  </div>
+</div>
+
+<div class="links">
+  <h2>Letter Guides &amp; Templates</h2>
+  <div class="link-grid">
+    <a href="/advisor-transition-letter-financial-advisor.html">Advisor Transition Letter Templates (2026)</a>
+    <a href="/quarterly-portfolio-update-letter-financial-advisor.html">Quarterly Portfolio Update Letter Templates</a>
+    <a href="/ai-generated-client-letters-financial-advisor.html">AI-Generated Client Letters for RIAs</a>
+    <a href="/client-offboarding-letter-financial-advisor.html">Client Offboarding Letter Templates</a>
+    <a href="/economic-outlook-letter-financial-advisor.html">Economic Outlook Letter Templates</a>
+    <a href="/how-to-write-owner-letters.html">How to Write Owner Letters</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 RIALetters · Built for independent RIAs and financial advisors</p>
+</footer>
+</body>
+</html>

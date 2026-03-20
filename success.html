@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PrepKit — Generating Your Kit…</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3d;
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --success: #22c55e;
+      --error: #ef4444;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo { font-size: 1.25rem; font-weight: 700; color: var(--accent-light); }
+    .logo span { color: var(--text); }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* Loading state */
+    #loading {
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1.5rem;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    #loading h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    #loading p { color: var(--muted); font-size: 0.9rem; }
+
+    /* Error state */
+    #error-state {
+      display: none;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid var(--error);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    #error-state h2 { color: var(--error); margin-bottom: 0.5rem; }
+    #error-state p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; }
+
+    #error-state a {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Result state */
+    #result {
+      display: none;
+    }
+
+    .result-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .result-header h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .result-header p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.2rem;
+    }
+
+    .action-btns {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      transition: background 0.15s;
+    }
+
+    .btn:hover { background: var(--border); }
+    .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #4f52d8; }
+
+    .kit-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      font-size: 0.92rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.7;
+    }
+
+    /* Markdown-style rendering */
+    .kit-content h1 { font-size: 1.4rem; font-weight: 800; margin: 0 0 1rem; color: var(--accent-light); }
+    .kit-content h2 { font-size: 1.1rem; font-weight: 700; margin: 1.5rem 0 0.5rem; color: var(--accent-light); border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+    .kit-content h3 { font-size: 1rem; font-weight: 700; margin: 1rem 0 0.3rem; color: var(--text); }
+    .kit-content p { margin: 0.5rem 0; }
+    .kit-content ul, .kit-content ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+    .kit-content li { margin: 0.25rem 0; }
+    .kit-content strong { color: var(--text); font-weight: 700; }
+    .kit-content code { background: rgba(99, 102, 241, 0.15); color: var(--accent-light); padding: 0.1rem 0.35rem; border-radius: 4px; font-family: "Fira Code", "Courier New", monospace; font-size: 0.85em; }
+    .kit-content hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+    .footer-note {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="logo">Prep<span>Kit</span></span>
+</header>
+
+<div class="container">
+  <!-- Loading -->
+  <div id="loading">
+    <div class="spinner"></div>
+    <h2>Generating your personalized prep kit...</h2>
+    <p>Claude is crafting tailored questions, model answers, and a study plan for you.<br>This takes about 30–45 seconds.</p>
+  </div>
+
+  <!-- Error -->
+  <div id="error-state">
+    <h2>Something went wrong</h2>
+    <p id="error-text">We couldn't generate your prep kit. Your payment has NOT been charged again.</p>
+    <a href="/">Try Again</a>
+  </div>
+
+  <!-- Result -->
+  <div id="result">
+    <div class="result-header">
+      <div>
+        <h2>Your Interview Prep Kit is Ready</h2>
+        <p>Payment confirmed · Generated by Claude AI</p>
+      </div>
+      <div class="action-btns">
+        <button class="btn" onclick="copyKit()">Copy</button>
+        <button class="btn btn-primary" onclick="downloadKit()">Download</button>
+      </div>
+    </div>
+    <div class="kit-content" id="kit-output"></div>
+    <div class="footer-note">
+      Save this page or download your kit — it won't be accessible again after you leave.
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2026 PrepKit · Built with Claude AI · Payments secured by Stripe
+</footer>
+
+<script>
+  var kitText = '';
+
+  function renderMarkdown(text) {
+    return text
+      .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+      .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+      .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/^---$/gm, '<hr>')
+      .replace(/^\* (.+)$/gm, '<li>$1</li>')
+      .replace(/^- (.+)$/gm, '<li>$1</li>')
+      .replace(/(<li>.*<\/li>\n?)+/g, function(m) { return '<ul>' + m + '</ul>'; })
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/^(?!<[h|u|o|l|h])(.+)$/gm, '<p>$1</p>');
+  }
+
+  async function generate() {
+    var params = new URLSearchParams(window.location.search);
+    var sessionId = params.get('session_id');
+
+    if (!sessionId) {
+      showError('No payment session found. Please go back and try again.');
+      return;
+    }
+
+    var raw = sessionStorage.getItem('prepkit_data');
+    if (!raw) {
+      showError('Your session data was lost (browser was closed?). Please start over.');
+      return;
+    }
+
+    var data;
+    try { data = JSON.parse(raw); } catch(e) {
+      showError('Session data corrupted. Please start over.');
+      return;
+    }
+
+    try {
+      var res = await fetch('/.netlify/functions/generate-prepkit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sessionId: sessionId,
+          targetRole: data.targetRole,
+          yearsExp: data.yearsExp,
+          interviewType: data.interviewType,
+          techStack: data.techStack,
+          background: data.background,
+          gap: data.gap || ''
+        })
+      });
+
+      var result = await res.json();
+
+      if (!res.ok) {
+        showError(result.error || 'Generation failed. Please try again.');
+        return;
+      }
+
+      kitText = result.kit;
+      document.getElementById('kit-output').innerHTML = renderMarkdown(kitText);
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('result').style.display = 'block';
+
+      // Clean up sessionStorage
+      sessionStorage.removeItem('prepkit_data');
+
+    } catch(err) {
+      showError('Network error. Please refresh and try again.');
+    }
+  }
+
+  function showError(msg) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('error-text').textContent = msg;
+    document.getElementById('error-state').style.display = 'block';
+  }
+
+  function copyKit() {
+    navigator.clipboard.writeText(kitText).then(function() {
+      var btn = document.querySelector('.btn:not(.btn-primary)');
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+    });
+  }
+
+  function downloadKit() {
+    var blob = new Blob([kitText], { type: 'text/plain' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'prepkit-interview-prep.txt';
+    a.click();
+  }
+
+  generate();
+</script>
+</body>
+</html>
