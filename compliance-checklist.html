@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEC Compliance Checklist for Financial Advisors — Free Tool | RIA Letters</title>
+  <meta name="description" content="Free interactive SEC compliance checklist for RIA client communications. Check your letters against 15 key requirements — disclosures, disclaimers, record retention, and more." />
+  <meta name="keywords" content="SEC compliance checklist financial advisor, RIA compliance requirements, financial advisor letter compliance, SEC marketing rule checklist, ADV Part 2 disclosure" />
+  <link rel="canonical" href="https://hlteoh37.github.io/ria-letters/compliance-checklist" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hlteoh37.github.io/ria-letters/compliance-checklist" />
+  <meta property="og:title" content="SEC Compliance Checklist for Financial Advisors — Free Tool | RIA Letters" />
+  <meta property="og:description" content="Free interactive tool: check your RIA client letters against 15 SEC compliance requirements in seconds." />
+  <meta property="og:site_name" content="RIALetters" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "SEC Compliance Checklist for Financial Advisors",
+    "description": "Free interactive checklist to verify RIA client communications meet SEC compliance requirements.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "RIALetters" }
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d1117; --surface: #161b22; --border: #30363d;
+      --text: #e6edf3; --muted: #8b949e; --accent: #2563eb; --accent-hover: #1d4ed8;
+      --green: #22c55e; --green-bg: rgba(34,197,94,0.1); --green-border: rgba(34,197,94,0.3);
+      --yellow: #eab308; --yellow-bg: rgba(234,179,8,0.1); --yellow-border: rgba(234,179,8,0.3);
+      --red: #ef4444; --red-bg: rgba(239,68,68,0.1); --red-border: rgba(239,68,68,0.3);
+    }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.7; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+    .nav strong { color: var(--text); font-size: 1.1rem; }
+    .nav a { color: var(--muted); font-size: 0.9rem; }
+
+    .page-header { padding: 3.5rem 2rem 2rem; max-width: 860px; margin: 0 auto; text-align: center; }
+    .page-header .badge { display: inline-block; background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); border-radius: 20px; font-size: 0.78rem; font-weight: 700; padding: 0.3rem 0.9rem; margin-bottom: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .page-header h1 { font-size: 2.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
+    .page-header h1 span { color: var(--accent); }
+    .page-header p { font-size: 1.05rem; color: var(--muted); max-width: 600px; margin: 0 auto; }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 2rem 4rem; }
+
+    /* Score card */
+    .score-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+      padding: 1.75rem 2rem; margin: 2rem 0; display: flex; align-items: center;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .score-number { font-size: 3rem; font-weight: 800; line-height: 1; min-width: 80px; }
+    .score-label { font-size: 0.9rem; color: var(--muted); margin-top: 0.25rem; }
+    .score-right { flex: 1; min-width: 200px; }
+    .progress-track { background: var(--border); border-radius: 99px; height: 12px; margin-bottom: 0.6rem; overflow: hidden; }
+    .progress-bar {
+      height: 100%; border-radius: 99px; background: var(--green);
+      transition: width 0.35s ease, background 0.35s ease;
+      width: 0%;
+    }
+    .score-pct { font-size: 1.5rem; font-weight: 700; }
+    .score-status { font-size: 0.88rem; color: var(--muted); margin-top: 0.15rem; }
+
+    /* Checklist */
+    .checklist-section { margin-bottom: 2.5rem; }
+    .section-title {
+      font-size: 0.75rem; font-weight: 700; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 0.75rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .checklist-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1rem 1.1rem; margin-bottom: 0.6rem;
+      cursor: pointer; transition: border-color 0.15s, background 0.15s;
+      user-select: none;
+    }
+    .checklist-item:hover { border-color: var(--accent); }
+    .checklist-item.checked {
+      background: var(--green-bg); border-color: var(--green-border);
+    }
+    .check-box {
+      width: 22px; height: 22px; border: 2px solid var(--border);
+      border-radius: 6px; flex-shrink: 0; margin-top: 0.15rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, border-color 0.15s;
+      font-size: 0.85rem; font-weight: 700;
+    }
+    .checklist-item.checked .check-box {
+      background: var(--green); border-color: var(--green); color: #000;
+    }
+    .item-content h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .item-content p { font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.55; }
+    .item-tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 700;
+      padding: 0.15rem 0.55rem; border-radius: 20px; margin-top: 0.35rem;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .tag-required { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+    .tag-recommended { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+    .tag-best-practice { background: rgba(99,102,241,0.1); color: #818cf8; border: 1px solid rgba(99,102,241,0.3); }
+
+    /* CTA block */
+    .cta-block {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+      padding: 2.5rem; text-align: center; margin: 2.5rem 0;
+    }
+    .cta-block .cta-badge {
+      display: inline-block; background: var(--green-bg); color: var(--green);
+      border: 1px solid var(--green-border); border-radius: 20px;
+      font-size: 0.78rem; font-weight: 700; padding: 0.3rem 0.9rem;
+      margin-bottom: 1rem; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .cta-block h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.75rem; }
+    .cta-block p { color: var(--muted); font-size: 1rem; max-width: 520px; margin: 0 auto 1.5rem; }
+    .cta-block .price { font-size: 2.4rem; font-weight: 800; margin-bottom: 0.2rem; }
+    .cta-block .price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+    .cta-btn {
+      display: inline-block; padding: 0.9rem 2.25rem; background: var(--accent);
+      color: #fff; border-radius: 8px; font-weight: 700; font-size: 1.05rem;
+      text-decoration: none; transition: background 0.15s;
+    }
+    .cta-btn:hover { background: var(--accent-hover); text-decoration: none; }
+    .cta-btn-lg { padding: 1rem 2.5rem; font-size: 1.1rem; }
+    .sub { display: block; margin-top: 0.6rem; font-size: 0.85rem; color: var(--muted); }
+    .coffee-link { margin-top: 1rem; font-size: 0.9rem; }
+
+    .reset-btn {
+      background: none; border: 1px solid var(--border); color: var(--muted);
+      border-radius: 6px; padding: 0.45rem 1rem; font-size: 0.85rem;
+      cursor: pointer; transition: border-color 0.15s, color 0.15s;
+    }
+    .reset-btn:hover { border-color: var(--text); color: var(--text); }
+
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; color: var(--muted); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <strong><a href="index.html" style="color: var(--text);">RIALetters</a></strong>
+  <a href="index.html">Home</a>
+  <a href="advisor-transition-letter-financial-advisor.html">Transition Letters</a>
+  <a href="quarterly-portfolio-update-letter-financial-advisor.html">Quarterly Updates</a>
+  <a href="free-sample-letter.html">Free Sample</a>
+</nav>
+
+<div class="page-header">
+  <div class="badge">Free Tool</div>
+  <h1>SEC Compliance Checklist for <span>Financial Advisors</span></h1>
+  <p>Check your RIA client communications against 15 key SEC requirements. Interactive, instant, and 100% free — no sign-up needed.</p>
+</div>
+
+<div class="container">
+
+  <!-- Score card -->
+  <div class="score-card">
+    <div>
+      <div class="score-number" id="score-count">0/15</div>
+      <div class="score-label">items checked</div>
+    </div>
+    <div class="score-right">
+      <div class="progress-track">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="score-pct" id="score-pct">0% compliant</div>
+      <div class="score-status" id="score-status">Check items below to score your letter</div>
+    </div>
+    <button class="reset-btn" onclick="resetAll()">Reset</button>
+  </div>
+
+  <!-- Section 1: Required Disclosures -->
+  <div class="checklist-section">
+    <div class="section-title">Required Disclosures</div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="1">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>ADV Part 2 Reference Included</h3>
+        <p>Letter references your Form ADV Part 2A (brochure) and informs clients how to obtain a current copy — typically by contacting your firm or via the SEC's IAPD database.</p>
+        <span class="item-tag tag-required">Required</span>
+      </div>
+    </div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="2">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>Fee Disclosure Present</h3>
+        <p>Advisory fees, compensation structure, or a reference to the full fee schedule in your ADV Part 2 is clearly disclosed. Clients are not misled about total costs.</p>
+        <span class="item-tag tag-required">Required</span>
+      </div>
+    </div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="3">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>Conflict of Interest Disclosure</h3>
+        <p>Any material conflicts of interest — third-party compensation, referral arrangements, proprietary products — are disclosed or referenced in the communication.</p>
+        <span class="item-tag tag-required">Required</span>
+      </div>
+    </div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="4">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>Registered Investment Advisor Status Stated</h3>
+        <p>The letter identifies your firm as a Registered Investment Advisor (RIA) registered with the SEC or applicable state regulator. Avoids misleading clients about your regulatory status.</p>
+        <span class="item-tag tag-required">Required</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Disclaimers -->
+  <div class="checklist-section">
+    <div class="section-title">Disclaimers &amp; Performance Statements</div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="5">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>Past Performance Disclaimer</h3>
+        <p>Any mention of past investment performance includes a clear disclaimer: "Past performance is not indicative of future results" (or equivalent language). This is a core SEC Marketing Rule requirement.</p>
+        <span class="item-tag tag-required">Required</span>
+      </div>
+    </div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="6">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>No Performance Guarantees</h3>
+        <p>The letter does not promise, guarantee, or imply guaranteed returns. Language like "you will earn X%" or "risk-free" is absent from all client communications.</p>
+        <span class="item-tag tag-required">Required</span>
+      </div>
+    </div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="7">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>Informational Purpose Disclaimer</h3>
+        <p>Letter includes language clarifying it is for informational purposes only and does not constitute investment advice specific to the recipient's unique situation (where applicable).</p>
+        <span class="item-tag tag-recommended">Recommended</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Client Suitability -->
+  <div class="checklist-section">
+    <div class="section-title">Client Suitability &amp; Fiduciary Duty</div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="8">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>Client Suitability Acknowledged</h3>
+        <p>Any investment recommendations or portfolio changes referenced in the letter are consistent with the client's documented risk tolerance, investment objectives, and financial situation on file.</p>
+        <span class="item-tag tag-required">Required</span>
+      </div>
+    </div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="9">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>Fiduciary Standard Language</h3>
+        <p>Communication reflects or supports your fiduciary duty — acting in the client's best interest. Avoids language that could imply recommendations driven by your compensation rather than client benefit.</p>
+        <span class="item-tag tag-recommended">Recommended</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Privacy & Data -->
+  <div class="checklist-section">
+    <div class="section-title">Privacy &amp; Data Compliance</div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="10">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>Privacy Policy Reference (Regulation S-P)</h3>
+        <p>Annual privacy notice (or reference to it) is included where required. Clients are informed how their non-public personal information is collected, used, and protected per Regulation S-P.</p>
+        <span class="item-tag tag-required">Required</span>
+      </div>
+    </div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="11">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>No Unauthorized Use of Client Data</h3>
+        <p>The letter does not reference, imply, or demonstrate any use of client data beyond what is permitted under your privacy notice and applicable regulations.</p>
+        <span class="item-tag tag-required">Required</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Record Retention & Anti-Fraud -->
+  <div class="checklist-section">
+    <div class="section-title">Record Retention &amp; Anti-Fraud</div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="12">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>Record Retention Compliance (Rule 204-2)</h3>
+        <p>A copy of this communication (and any supporting materials) is retained in your books and records per SEC Rule 204-2. Client correspondence must typically be kept for 5 years, 2 years in an accessible location.</p>
+        <span class="item-tag tag-required">Required</span>
+      </div>
+    </div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="13">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>No Materially Misleading Statements</h3>
+        <p>The letter contains no false, misleading, or deceptive statements about your firm, performance, credentials, services, or fees. Anti-fraud provisions under the Investment Advisers Act apply to all client communications.</p>
+        <span class="item-tag tag-required">Required</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: Best Practices -->
+  <div class="checklist-section">
+    <div class="section-title">Best Practices</div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="14">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>No Unsubstantiated Testimonials or Endorsements</h3>
+        <p>Under the SEC Marketing Rule (Rule 206(4)-1), any testimonials or endorsements must meet specific requirements including disclosure of compensation and lack of material conflicts. If none are included, you're clear.</p>
+        <span class="item-tag tag-recommended">Recommended</span>
+      </div>
+    </div>
+
+    <div class="checklist-item" onclick="toggle(this)" data-id="15">
+      <div class="check-box"></div>
+      <div class="item-content">
+        <h3>Compliance Officer Review</h3>
+        <p>Letter has been reviewed (or follows a pre-approved template reviewed) by your Chief Compliance Officer or designated compliance consultant before sending to clients.</p>
+        <span class="item-tag tag-best-practice">Best Practice</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA block -->
+  <div class="cta-block" id="cta-block">
+    <div class="cta-badge">Want 100% Compliant Letters — Without the Drafting?</div>
+    <h2>Every RIALetters Template Is Compliance-Ready</h2>
+    <p>Stop checking boxes manually. RIALetters generates personalized client letters with SEC-appropriate language built in — past performance disclaimers, fiduciary language, proper disclosures. Every time.</p>
+    <div class="price">$49<span>/month</span></div>
+    <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1.75rem;">7-day free trial · Cancel anytime · No credit card required to start</p>
+    <a href="https://buy.stripe.com/eVq28rc3edmfc3GcEX9Zm01" class="cta-btn cta-btn-lg">Start My Free Trial →</a>
+    <span class="sub">Trusted by independent RIAs and fee-only advisors nationwide</span>
+    <div class="coffee-link">
+      <a href="https://buy.stripe.com/dRm8wP8R295Z9VyeN59Zm00" style="color: var(--muted); font-size: 0.85rem;">
+        ☕ Find this tool useful? Buy us a coffee →
+      </a>
+    </div>
+  </div>
+
+  <p style="text-align: center; margin-bottom: 3rem; color: var(--muted); font-size: 0.9rem;">
+    ← <a href="index.html">Back to RIALetters home</a>
+  </p>
+
+</div>
+
+<footer>
+  <p style="text-align:center;margin-bottom:0.5rem;"><a href="https://buymeacoffee.com/gl89tu25lp" target="_blank" rel="noopener" style="color:#ffdd00;text-decoration:none;font-weight:bold;">&#9749; Buy us a coffee</a></p>
+  <p>© 2026 RIALetters · Built for independent RIAs and financial advisors · <a href="index.html">Home</a></p>
+  <p style="margin-top:0.35rem;font-size:0.78rem;color:#555;">This checklist is for educational purposes only and does not constitute legal or compliance advice. Consult your compliance counsel for guidance specific to your firm.</p>
+</footer>
+
+<script>
+  const TOTAL = 15;
+  let checked = new Set();
+
+  function toggle(el) {
+    const id = el.dataset.id;
+    if (checked.has(id)) {
+      checked.delete(id);
+      el.classList.remove('checked');
+      el.querySelector('.check-box').textContent = '';
+    } else {
+      checked.add(id);
+      el.classList.add('checked');
+      el.querySelector('.check-box').textContent = '✓';
+    }
+    updateScore();
+  }
+
+  function updateScore() {
+    const n = checked.size;
+    const pct = Math.round((n / TOTAL) * 100);
+
+    document.getElementById('score-count').textContent = n + '/' + TOTAL;
+    document.getElementById('score-pct').textContent = pct + '% compliant';
+
+    const bar = document.getElementById('progress-bar');
+    bar.style.width = pct + '%';
+
+    // Colour the bar by score
+    if (pct >= 80) {
+      bar.style.background = 'var(--green)';
+    } else if (pct >= 50) {
+      bar.style.background = 'var(--yellow)';
+    } else {
+      bar.style.background = 'var(--red)';
+    }
+
+    const status = document.getElementById('score-status');
+    if (n === 0) {
+      status.textContent = 'Check items below to score your letter';
+    } else if (pct === 100) {
+      status.textContent = '🎉 All requirements met — excellent compliance posture!';
+    } else if (pct >= 80) {
+      status.textContent = 'Strong — review unchecked items before sending';
+    } else if (pct >= 50) {
+      status.textContent = 'Needs work — several important items are missing';
+    } else {
+      status.textContent = 'High risk — significant compliance gaps detected';
+    }
+  }
+
+  function resetAll() {
+    checked.clear();
+    document.querySelectorAll('.checklist-item').forEach(function(el) {
+      el.classList.remove('checked');
+      el.querySelector('.check-box').textContent = '';
+    });
+    updateScore();
+  }
+</script>
+
+</body>
+</html>
